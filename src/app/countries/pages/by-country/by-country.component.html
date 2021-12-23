@@ -1,1 +1,44 @@
-<p>by-country works!</p>
+<h2>Search by country</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form (submit)="search()" autocomplete="off">
+            <input [(ngModel)]="term" type="text" name="term" id="" class="form-control"
+                placeholder="Enter the name of the country">
+        </form>
+    </div>
+</div>
+
+<hr>
+
+<div class="alert alert-danger" *ngIf="!hasResults; else showResults">
+    Country not found, try another one
+</div>
+
+<ng-template #showResults>
+    <div class="row" *ngIf="countries.length > 0">
+        <div class="col">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th># </th>
+                        <th>Name </th>
+                        <th>Flag </th>
+                        <th>Population </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let country of countries">
+                    <tr>
+                        <td>{{country.id}} </td>
+                        <td>{{country.name}} </td>
+                        <td>{{country.flag}} </td>
+                        <td>{{country.population}} </td>
+                        <td>See more... </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
