@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryService } from '../../services/country.service';
+import { Country } from '../../interfaces/CountryByNameResponse.interface';
 
 @Component({
   selector: 'app-by-country',
@@ -9,23 +10,33 @@ import { CountryService } from '../../services/country.service';
 export class ByCountryComponent implements OnInit {
 
   term: string = "";
-  countries: any[] = [];
+  countries: Country[] = [];
+  suggestions: string[] = [];
   hasResults: boolean = true;
-  constructor(private hhtpClient: CountryService) { }
+  constructor(private httpClient: CountryService) { }
 
   ngOnInit(): void {
   }
 
-  search() {
-    this.hhtpClient.getByCountry(this.term)
-      .subscribe(data => {
-        if (data?.status == 404) 
-          this.hasResults = false;
-        else {
-          this.countries = data;
+  search(term: string) {
+    this.term = term;
+    this.httpClient.getByCountry(term)
+      .subscribe(countries => {
+        if (countries.length > 0) {
+          this.countries = countries;
           this.hasResults = true;
-        } 
+        } else this.hasResults = false;
       });
   }
 
+  showSuggestions(term: string) {
+    this.term = term;
+    this.httpClient.getByCountry(term)
+      .subscribe(countries => {
+        if (countries.length > 0) {
+          this.suggestions = countries.map(country => country.name);
+          this.hasResults = true;
+        } else this.hasResults = false;
+      });
+  }
 }

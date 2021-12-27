@@ -1,1 +1,27 @@
-<p>by-capital works!</p>
+<h2>Search by capital</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <app-country-input 
+            (onSearch)="search( $event )"
+            (onDebounce)="showSuggestions( $event )"
+            placeholder="Type a capital...">
+
+        </app-country-input>
+    </div>
+</div>
+
+<hr>
+
+<div class="alert alert-danger" *ngIf="!hasResults; else showResults">
+    Country not found, try another one
+</div>
+
+<ng-template #showResults>
+    <div class="row" *ngIf="countries.length > 0">
+        <div class="col">
+            <app-country-table [countries]="countries"></app-country-table>
+        </div>
+    </div>
+</ng-template>
