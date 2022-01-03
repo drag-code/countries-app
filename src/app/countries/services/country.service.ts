@@ -26,4 +26,9 @@ export class CountryService {
     const url = `${this.BASEURL}/alpha/${code}`;
     return this.httpClient.get<Country>(url);
   }
+
+  getByRegion(regionalbloc: string): Observable<Country[]> {
+    const url = `${this.BASEURL}/regionalbloc/${regionalbloc}`;
+    return this.httpClient.get<Country[]>(url);
+  }
 }
