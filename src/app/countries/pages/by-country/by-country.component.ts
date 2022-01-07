@@ -13,6 +13,7 @@ export class ByCountryComponent implements OnInit {
   countries: Country[] = [];
   suggestions: Country[] = [];
   hasResults: boolean = true;
+  suggestionsHided: boolean = false;
   constructor(private httpClient: CountryService) { }
 
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class ByCountryComponent implements OnInit {
 
   search(term: string) {
     this.term = term;
+    this.suggestionsHided = true;
     this.httpClient.getByCountry(term)
       .subscribe(countries => {
         if (countries.length > 0) {
@@ -30,6 +32,7 @@ export class ByCountryComponent implements OnInit {
   }
 
   showSuggestions(term: string) {
+    this.suggestionsHided = false;
     this.term = term;
     this.suggestions = [];
     if (term) {

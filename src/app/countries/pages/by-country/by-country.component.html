@@ -11,8 +11,11 @@
         </div>
     </div>
 
-    <ul class="list-group" *ngFor="let suggestion of suggestions">
-        <a [routerLink]="['/country', suggestion.alpha2Code]" class="list-group-item list-group-item-action pointer">{{suggestion.name}}</a>
+    <ul class="list-group" *ngIf="!suggestionsHided">
+        <li class="list-group-item list-group-item-action pointer" *ngFor="let suggestion of suggestions">
+            <a [routerLink]="['/country', suggestion.alpha2Code]" class="nav-link">{{suggestion.name}}
+            </a>
+        </li>
     </ul>
 
     <hr>
