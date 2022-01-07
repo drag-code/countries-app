@@ -1,30 +1,32 @@
-<h1>Regions</h1>
-<hr>
+<div class="animate__animated animate__backInLeft">
+    <h1>Regions</h1>
+    <hr>
 
-<h5>Select a region</h5>
-<!--
-    Conditional class 
-    [class.btn-dark]="region === selectedRegion" 
--->
+    <h5>Select a region</h5>
+    <!--
+        Conditional class
+        [class.btn-dark]="region === selectedRegion"
+    -->
 
-<!--
-    Conditional class 2 
-    [ngClass]="{
-            'btn-dark': region === selectedRegion,
-            'btn-outline-dark': region !== selectedRegion
-    }" 
--->
-<div class="row">
-    <div class="col">
-        <button [title]="region.description" (click)="search(region.code)" [class]="getSelectedClass(region.code)"
-            *ngFor="let region of regions">{{region.code}}
-        </button>
+    <!--
+        Conditional class 2
+        [ngClass]="{
+                'btn-dark': region === selectedRegion,
+                'btn-outline-dark': region !== selectedRegion
+        }"
+    -->
+    <div class="row">
+        <div class="col">
+            <button [title]="region.description" (click)="search(region.code)" [class]="getSelectedClass(region.code)"
+                *ngFor="let region of regions">{{region.code}}
+            </button>
+        </div>
     </div>
-</div>
-<hr>
+    <hr>
 
-<div class="row" *ngIf="countries.length > 0">
-    <div class="col">
-        <app-country-table [countries]="countries"></app-country-table>
+    <div class="row" *ngIf="countries.length > 0">
+        <div class="col">
+            <app-country-table [countries]="countries"></app-country-table>
+        </div>
     </div>
 </div>
