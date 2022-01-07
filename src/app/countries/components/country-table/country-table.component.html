@@ -8,9 +8,9 @@
             <th></th>
         </tr>
     </thead>
-    <tbody *ngFor="let country of countries">
+    <tbody *ngFor="let country of countries; index as i">
         <tr>
-            <td>{{country.numericCode}} </td>
+            <td>{{i + 1}} </td>
             <td> {{country.capital}}, {{country.name}} </td>
             <td> <img [src]="country.flag" alt="Country flag" class="flag-sm"> </td>
             <td>{{country.population | number}} </td>

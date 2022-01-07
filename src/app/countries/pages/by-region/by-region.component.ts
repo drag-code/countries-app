@@ -8,8 +8,8 @@ import { Country } from '../../interfaces/CountryByNameResponse.interface';
   styleUrls: ['./by-region.component.css']
 })
 export class ByRegionComponent implements OnInit {
-  
-  regions : any[] = [
+
+  regions: any[] = [
     {
       code: "EU",
       description: "European Union"
@@ -29,31 +29,31 @@ export class ByRegionComponent implements OnInit {
     {
       code: "AU",
       description: "African Union"
-    },  
+    },
     {
       code: "USAN",
       description: "Union of South American Nations"
-    },  
+    },
     {
       code: "EEU",
       description: "Eurasian Economic Union"
-    },  
+    },
     {
       code: "AL",
       description: "Arab League"
-    },  
+    },
     {
       code: "ASEAN",
       description: "Association of Southeast Asian Nations"
-    },  
+    },
     {
       code: "CAIS",
       description: "Central American Integration System"
-    },  
+    },
     {
       code: "CEFTA",
       description: "Central European Free Trade Agreement"
-    },  
+    },
     {
       code: "NAFTA",
       description: "North American Free Trade Agreement"
@@ -63,22 +63,20 @@ export class ByRegionComponent implements OnInit {
       description: "South Asian Association for Regional Cooperation"
     }
   ];
-  selectedRegion : string = "";
+  selectedRegion: string = "";
   countries: Country[] = [];
-  hasResults: boolean = true; 
   constructor(private httpClient: CountryService) { }
 
   ngOnInit(): void {
   }
 
   search(region: string) {
+    if (region === this.selectedRegion) return;
+
     this.selectedRegion = region;
     this.httpClient.getByRegion(this.selectedRegion)
       .subscribe(countries => {
-        if (countries.length > 0) {
-          this.countries = countries;
-          this.hasResults = true;
-        } else this.hasResults = false;
+        this.countries = countries;
       });
   }
 

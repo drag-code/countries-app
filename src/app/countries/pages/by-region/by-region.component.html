@@ -16,24 +16,15 @@
 -->
 <div class="row">
     <div class="col">
-        <button
-        [title]="region.description" 
-        (click)="search(region.code)"
-        [class]="getSelectedClass(region.code)"        
-        *ngFor="let region of regions">{{region.code}}
+        <button [title]="region.description" (click)="search(region.code)" [class]="getSelectedClass(region.code)"
+            *ngFor="let region of regions">{{region.code}}
         </button>
     </div>
 </div>
 <hr>
 
-<div class="alert alert-danger" *ngIf="!hasResults; else showResults">
-    Country not found, try another one
-</div>
-
-<ng-template #showResults>
-    <div class="row" *ngIf="countries.length > 0">
-        <div class="col">
-            <app-country-table [countries]="countries"></app-country-table>
-        </div>
+<div class="row" *ngIf="countries.length > 0">
+    <div class="col">
+        <app-country-table [countries]="countries"></app-country-table>
     </div>
-</ng-template>
+</div>
