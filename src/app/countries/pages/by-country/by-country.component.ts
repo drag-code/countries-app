@@ -11,7 +11,7 @@ export class ByCountryComponent implements OnInit {
 
   term: string = "";
   countries: Country[] = [];
-  suggestions: string[] = [];
+  suggestions: Country[] = [];
   hasResults: boolean = true;
   constructor(private httpClient: CountryService) { }
 
@@ -31,12 +31,10 @@ export class ByCountryComponent implements OnInit {
 
   showSuggestions(term: string) {
     this.term = term;
-    this.httpClient.getByCountry(term)
-      .subscribe(countries => {
-        if (countries.length > 0) {
-          this.suggestions = countries.map(country => country.name);
-          this.hasResults = true;
-        } else this.hasResults = false;
-      });
+    this.suggestions = [];
+    if (term) {
+      this.httpClient.getByCountry(term)
+        .subscribe(countries => this.suggestions = countries.splice(0, 6));
+    }
   }
 }

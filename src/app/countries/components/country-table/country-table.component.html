@@ -1,4 +1,4 @@
-<table class="table table-hover animate__animated animate__backInLeft">
+<table class="table table-hover">
     <thead>
         <tr>
             <th># </th>
@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody *ngFor="let country of countries; index as i">
-        <tr>
+        <tr class="animate__animated animate__fadeIn animate__faster">
             <td>{{i + 1}} </td>
             <td> {{country.capital}}, {{country.name}} </td>
             <td> <img [src]="country.flag" alt="Country flag" class="flag-sm"> </td>

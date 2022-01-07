@@ -11,6 +11,10 @@
         </div>
     </div>
 
+    <ul class="list-group" *ngFor="let suggestion of suggestions">
+        <a [routerLink]="['/country', suggestion.alpha2Code]" class="list-group-item list-group-item-action pointer">{{suggestion.name}}</a>
+    </ul>
+
     <hr>
 
     <div class="alert alert-danger" *ngIf="!hasResults; else showResults">

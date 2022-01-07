@@ -6,3 +6,7 @@
 .mr-1 {
     margin-right: 10px;
 }
+
+.pointer {
+    cursor: pointer;
+}
